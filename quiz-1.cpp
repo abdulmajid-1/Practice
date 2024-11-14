@@ -1,24 +1,16 @@
 #include<iostream>
 using namespace std;
-int main()
+
+class Node
 {
-    int arr[5] = {2,3,4,5,6};
-    int *p;
-    p = arr;
-    cout<<"Data original : "<<endl;
-    for(int i = 0; i < 5; i++)
+    int data;
+    Node *next;
+};
+class LinkedList
+{
+    Node *tail = NULL, *head = NULL;
+    LinkedList(int d)
     {
-        cout<<p[i]<<" ";
     }
-    cout<<endl;
-    cout<<"Modified data : "<<endl;
-    for(int i = 0; i < 5; i++)
-    {
-        p[i] *= 10;
-    }
-    for(int i = 0; i < 5; i++)
-    {
-        cout<<*(p + i)<<" ";
-    }
-    cout<<endl;
-}
+
+};
