@@ -1,0 +1,119 @@
+Open segments:Microsoft (R) Macro Assembler Version 5.00                  11/20/24 11:05:25
+                                                             Page     1-1
+
+
+
+CODESEG  . . . . . . . . . . . .  	
+Microsoft (R) Macro Assembler Version 5.00                  11/20/24 11:05:25
+                                                             Page     1-1
+
+
+       1				.model small 
+       2				 
+       3 0000				Dataseg segment 'Data' 
+       4				 
+       5				    name db "Abdul Majid$"   ; Replace 
+					with your name followed by '$' 
+asm-2.asm(5): warning A4001: Extra characters on line
+       6				 
+       7 0000				Dataseg ends 
+       8 0000				Codeseg segment 'code' 
+       9				 
+      10				    assume cs:Codeseg, ds:Dataseg, ss:S
+					tackseg 
+asm-2.asm(10): error A2009: Symbol not defined: STACKSEG
+      11				 
+      12 0000				    main proc for 
+asm-2.asm(12): error A2022: Operand must be type specifier
+      13				    ; Initialize data segment 
+      14 0000  B8 ---- R		    mov ax, Dataseg 
+      15 0003  8E D8			    mov ds, ax 
+      16				 
+      17				    ; Clear screen (int 10h, ah = 0) 
+      18 0005  B4 00			    mov ah, 0 
+      19 0007  CD 10			    int 10h  ; Clears the screen 
+      20				 
+      21				    ; Move cursor to middle of screen (
+					row 12, column 40) 
+      22 0009  B4 02			    mov ah, 2          ; Function to se
+					t cursor position 
+      23 000B  B7 00			    mov bh, 0          ; Page number (u
+					sually 0) 
+      24 000D  B2 28			    mov dl, 40         ; Column (40th c
+					olumn) 
+      25 000F  B6 0C			    mov dh, 12         ; Row (12th row)
+					 
+      26 0011  CD 10			    int 10h            ; Call BIOS inte
+					rrupt 
+      27				 
+      28				    ; Print name 
+      29 0013  B4 09			    mov ah, 9          ; Function to di
+					splay string 
+      30 0015  8D 16 0000 U		    lea dx, name       ; Load address o
+					f the string into DX 
+asm-2.asm(30): error A2009: Symbol not defined: NAME
+      31 0019  CD 21			    int 21h            ; Call DOS inter
+					rupt to display string 
+      32				 
+      33				    ; Exit program 
+      34 001B  B4 4C			    mov ah, 4Ch        ; DOS function t
+					o terminate program 
+      35 001D  CD 21			    int 21h            ; Call DOS inter
+					rupt to exit 
+      36 001F				    main endp 
+      37				 
+Microsoft (R) Macro Assembler Version 5.00                  11/20/24 11:05:25
+                                                             Page     1-2
+
+
+      38				Code_seg ends 
+asm-2.asm(38): error A2000: Block nesting error
+      39				 
+      40 0000				code_seg segment 'stack' dw  
+asm-2.asm(40): error A2025: Improper align/combine type
+      41				 
+      42				    80H DUP(?) 
+asm-2.asm(42): warning A4001: Extra characters on line
+      43				 
+      44				stack_seg ends 
+asm-2.asm(44): error A2000: Block nesting error
+      45				 
+      46 0000				end main 
+Open segments:
+CODESEG  . . . . . . . . . . . .  	
+Microsoft (R) Macro Assembler Version 5.00                  11/20/24 11:05:25
+                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODESEG  . . . . . . . . . . . .  	001F	PARA	NONE	'CODE'
+CODE_SEG . . . . . . . . . . . .  	0000	PARA	NONE	'STACK'
+DATASEG  . . . . . . . . . . . .  	0000	PARA	NONE	'DATA'
+DGROUP . . . . . . . . . . . . .  	GROUP
+  _DATA  . . . . . . . . . . . .  	0000	WORD	PUBLIC	'DATA'
+STACKSEG . . . . . . . . . . . .  	0000	FAR	Segments and Groups:	
+_TEXT  . . . . . . . . . . . . .  	0000	WORD	PUBLIC	'CODE'
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+MAIN . . . . . . . . . . . . . .  	N PROC	0000	CODESEG	Length = 001F
+
+@CODE  . . . . . . . . . . . . .  	TEXT  _TEXT		
+@CODESIZE  . . . . . . . . . . .  	TEXT  0		
+@DATASIZE  . . . . . . . . . . .  	TEXT  0		
+@FILENAME  . . . . . . . . . . .  	TEXT  asm-2		
+
+
+     46 Source  Lines
+     46 Total   Lines
+     19 Symbols
+
+  50642 + 465902 Bytes symbol space free
+
+      2 Warning Errors
+      7 Severe  Errors

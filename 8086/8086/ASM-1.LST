@@ -1,0 +1,104 @@
+Open segments:Microsoft (R) Macro Assembler Version 5.00                  11/20/24 10:43:35
+                                                             Page     1-1
+
+
+
+DATASEG  . . . . . . . . . . . .  	
+Microsoft (R) Macro Assembler Version 5.00                  11/20/24 10:43:35
+                                                             Page     1-1
+
+
+       1				. model small 
+asm-1.asm(1): error A2105: Expected: instruction or directive
+       2 0000				dataseg segment 'data' 
+       3 0000  0D 0A 49 6E 70 75 74	    st1 db 13,10,"Input char" 
+       4       20 63 68 61 72		
+       5 000C  0D 0A 43 68 61 72 20	    st2 db 13,10,"Char input was : " 
+       6       69 6E 70 75 74 20 77	
+       7       61 73 20 3A 20		
+       8				 
+       9 001F  02			    Mychar db(2) 
+      10				 
+      11				Dataseg *ends* 
+asm-1.asm(8): error A2105: Expected: instruction or directive
+      12				 
+      13 0000				codeseg segment 'code' 
+      14				    assume cs:codeseg,ds:dataseg,ss:sta
+					ckseg 
+asm-1.asm(11): error A2009: Symbol not defined: STACKSEG
+      15 0000				    main proc for 
+asm-1.asm(12): error A2022: Operand must be type specifier
+      16 0000  B8 ---- R		    mov ax, dataseg 
+      17 0003  8E D8			    mov ds, ax 
+      18 0005  B4 09			    mov ah, 9 
+      19 0007  BB 0000 R		    mov ds, offset st1 
+asm-1.asm(16): error A2056: Immediate mode illegal
+      20 000A  CD 21			    int 21h 
+      21 000C  B4 01			    mov ah, 1 
+      22 000E  CD 21			    int 21h 
+      23 0010  A2 001F R		    mov mychar, al 
+      24 0013  B4 09			    mov ah, 9 
+      25 0015  BA 000C R		    mov dx, offset st2 
+      26 0018  CD 21			    int 21h 
+      27 001A  B4 02			    mov ah,2 
+      28 001C  8A 16 001F R		    mov dl , mychar 
+      29 0020  CD 21			    int 21h 
+      30 0022  B4 09			    mov ah, 9 
+      31 0024  BA 0000 R		    mov dx, offset st1 
+      32 0027  CD 21			    int 21h 
+      33 0029  B4 07			    mov ah, 7 
+      34 002B  CD 21			    int 21h 
+      35 002D  A2 001F R		    mov mychar, al 
+      36 0030  B4 09			    mov ah, 9 
+      37 0032  BA 000C R		    mov dx, offset st2 
+      38 0035  CD 21			    int 21h 
+      39 0037  B4 02			    mov ah,2 
+      40 0039  8A 16 001F R		    mov dl, mychar 
+      41 003D  CD 21			    int 21h 
+      42 003F  B4 4C			    mov ah, 4ch 
+      43 0041  CD 21			    int 21h 
+      44				 
+      45 0043				    main endp 
+      46 0043				    codeseg ends 
+      47				    stackseg ends 
+asm-1.asm(44): error A2000: Block nesting error
+Microsoft (R) Macro Assembler Version 5.00                  11/20/24 10:43:35
+                                                             Page     1-2
+
+
+      48				    end main 
+Open segments:
+DATASEG  . . . . . . . . . . . .  	
+Microsoft (R) Macro Assembler Version 5.00                  11/20/24 10:43:35
+                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODESEG  . . . . . . . . . . . .  	0043	PARA	NONE	'CODE'
+DATASEG  . . . . . . . . . . . .  	0020	PARA	NONE	'DATA'
+STACKSEG . . . . . . . . . . . .  	0000	FAR	Segments and Groups:	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+MAIN . . . . . . . . . . . . . .  	N PROC	0000	CODESEG	Length = 0043
+MYCHAR . . . . . . . . . . . . .  	L BYTE	001F	DATASEG
+
+ST1  . . . . . . . . . . . . . .  	L BYTE	0000	DATASEG
+ST2  . . . . . . . . . . . . . .  	L BYTE	000C	DATASEG
+
+@FILENAME  . . . . . . . . . . .  	TEXT  asm-1		
+
+
+     45 Source  Lines
+     45 Total   Lines
+     11 Symbols
+
+  50626 + 465918 Bytes symbol space free
+
+      0 Warning Errors
+      7 Severe  Errors
