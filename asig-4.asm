@@ -1,57 +1,82 @@
 .model small
-.data
+data_seg segment 'data'
     char db 'A'            ; Character to display
     row db 12              ; Initial row (Y-coordinate)
-    col db 40              ; Initial column (X-coordinate)
+    col db 33              ; Initial column (X-coordinate)
     blank db ' '           ; Used to erase the previous character
-.stack 100h
-.code
+data_seg ends
+
+stack_seg segment 'stack'
+    dw 200 DUP(?)
+stack_seg ends
+
+code_seg segment 'code'
     assume cs:code_seg, ds:data_seg, ss:stack_seg
 
-main proc
+main proc far 
     ; Initialize data segment
     mov ax, data_seg
     mov ds, ax
+    
+    ;clear screen
 
+    mov ah, 06h
+    mov al, 25
+    mov bh, 07h
+    mov cx, 0000h
+    mov dx, 184Fh
+    int 10h
+    ;put a char in the middle of the screen 
+    mov bh, 00
+    mov dh, row
+    mov dl, col
+    mov ah, 02
+    int 10h
+    
+
+    mov dl, char
+    mov ah, 02
+    int 21h
     ; Main animation loop
 animate:
     ; Read a key using INT 16h
-    mov ah, 00h             ; BIOS function to get key
+    mov ah, 0              ; BIOS function to get key
     int 16h                 ; Wait for a keypress
     cmp al, 1Bh             ; Check for Escape key (ASCII 27)
-    je exit_program         ; If Esc, exit the program
+    je tempexit        ; If Esc, exit the program
 
+    mov cx, ax
     ; Erase the current character
     mov ah, 02h             ; Set cursor position function
-    xor bh, bh              ; Page number 0
+    mov bh, 00              ; Page number 0
     mov dh, row             ; Current row
     mov dl, col             ; Current column
     int 10h
-    mov ah, 09h             ; Write character function
-    mov al, blank           ; Load blank space
-    mov bh, 00h             ; Page number
-    mov bl, 07h             ; Attribute (white on black)
-    mov cx, 1               ; Repeat count
-    int 10h
-
+    
+    mov dl, blank
+    mov ah, 02
+    int 21h
+ 
+    mov ax, cx
     ; Move the character based on the arrow key
     cmp al, 00h             ; Check if it's an extended key
     jne animate             ; Ignore if not extended key
-    cmp ah, 72h             ; Check if Up Arrow (Scan Code 72h)
+    cmp ah, 48h             ; Check if Up Arrow (Scan Code 46h)
     je move_up
-    cmp ah, 80h             ; Check if Down Arrow (Scan Code 80h)
+    cmp ah, 50h             ; Check if Down Arrow (Scan Code 50h)
     je move_down
-    cmp ah, 75h             ; Check if Left Arrow (Scan Code 75h)
+    cmp ah, 4Bh             ; Check if Left Arrow (Scan Code 4Bh)
     je move_left
-    cmp ah, 77h             ; Check if Right Arrow (Scan Code 77h)
+    cmp ah, 4Dh             ; Check if Right Arrow (Scan Code 4Dh)
     je move_right
 
     jmp redraw_character    ; Skip movement logic if no valid arrow key
-
+    tempexit:
+        jmp exit_program
 move_up:
     cmp row, 0              ; Prevent going off-screen
     je animate
-    dec row                 ; Move one row up
+    dec row                ; Move one row up
     jmp redraw_character
 
 move_down:
@@ -71,25 +96,26 @@ move_right:
     je animate
     inc col                 ; Move one column right
 
-redraw_character:
+ redraw_character:
+  
     ; Set cursor position to current (row, col)
     mov ah, 02h             ; Set cursor position function
-    xor bh, bh              ; Page number 0
+    mov bh, 0               ; Page number 0
     mov dh, row             ; Current row
     mov dl, col             ; Current column
     int 10h
     ; Print the character
-    mov ah, 09h             ; Write character function
-    mov al, char            ; Load character
-    mov bh, 00h             ; Page number
-    mov bl, 07h             ; Attribute (white on black)
-    mov cx, 1               ; Repeat count
-    int 10h
+    mov dl, char
+    mov ah, 02
+    int 21h
+
     jmp animate             ; Loop back for next input
+
 
 exit_program:
     mov ax, 4C00h           ; DOS terminate program
     int 21h
 
 main endp
+code_seg ends
 end main
