@@ -303,23 +303,28 @@ void priroty(int m, int n)
     int temp_m = m;
     int temp_n = n;
     bool checker = true;
-    while(temp -> next != NULL)
+    while(temp != NULL)
     {
         m = temp_m;
         n = temp_n;
-        while(m > 1 || temp -> next != NULL)
+        while(m > 1 && temp -> next != NULL)
         {
             temp = temp -> next;
             m--;
         }
+        if(temp -> next == NULL)
+        return;
         newtail = temp;
         newhead = temp -> next;
-        while(n > 0 || temp -> next != NULL)
+        while(n > 0 && temp -> next != NULL)
         {
             temp = temp -> next;
             n--;
         }
-        lasttail = newtail;
+        if(checker == true)
+        {
+            lasttail = newtail;
+        }
         newtail -> next = temp ->next;
         temp -> next = t_head;
         if(checker == true)
@@ -327,7 +332,7 @@ void priroty(int m, int n)
             head = newhead;
         }
         temp = newtail -> next;
-        t_head = temp -> next;
+        t_head = temp;
         if(checker == false)
         {
             lasttail -> next = newhead;
@@ -336,6 +341,39 @@ void priroty(int m, int n)
 
 
     }
+}
+void removal(int i , int j)
+{
+    if(head == NULL)
+    {
+        return;        
+    }
+    Node *temp = head;
+    Node *prev = NULL;
+    Node *todel = NULL;
+    int t_i = i;
+    int t_j = j;
+    while(temp != NULL)
+    {
+        i = t_i;
+        j = t_j;
+    while (i > 0 && temp -> next != NULL)
+    {
+        prev = temp;
+        temp = temp -> next;
+        i--;
+    }    
+    while(j > 0 && temp != NULL)
+    {
+        todel = temp;
+        temp = temp -> next;
+        delete todel;
+        j--;
+    }
+        prev -> next = temp;
+        
+    }
+
 }
 
 
@@ -369,10 +407,18 @@ int main()
  //   l1.checkpalindrome();
     l2.Insertatend(5);
     l2.Insertatend(6);
+    l1.Insertatend(5);
+    l1.Insertatend(6);
+    l1.Insertatend(7);
+    l1.Insertatend(8);
+    l1.Insertatend(9);
+    l1.Insertatend(10);
   //  Merge(l1,l2);
-  l1.ReverseList();
+   // l1.ReverseList();
+    //l1.priroty(3,4);
+    l1.removal(2,3);
 
    //s cout<<"Index : "<<l1.searchbyvalue(22)<<endl;
-   l1.Display();
+  l1.Display();
     return 0;
 }
