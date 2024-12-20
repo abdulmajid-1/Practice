@@ -118,9 +118,39 @@ class LinkedList
         cout<<"head is : "<<head -> data <<" tail is : "<<tail -> next -> data<<endl;
 
 }
+void Insertsortedorder(int d)
+{
+    if(head == NULL)
+    {
+        cout<<"Empty "<<endl;
+        return;
+    }
+    Node *n_node = new Node(d);
+    Node *temp = head;
+    Node *t_temp = tail;
+    while(temp  -> next != head)
+    {
+       while(temp -> next != head)
+       {
+        if(temp -> next -> data < temp -> data)
+        {
+            t_temp -> next = temp -> next -> next;
+            temp -> next -> next = temp;
+            t_temp -> next = temp -> next;
+        }
+        t_temp = temp;
+        temp = temp -> next;
+       }
+    }
+}
 
 };
 int main()
 {
     LinkedList l1;
+    l1.Insertatend(1);
+    l1.Insertatend(4);
+    l1.Insertatend(3);
+    l1.Insertsortedorder(2);
+    l1.Display();
 }
