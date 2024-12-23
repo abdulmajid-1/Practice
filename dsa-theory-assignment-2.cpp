@@ -115,33 +115,132 @@ class LinkedList
                 break;
             }
         }
-        cout<<"head is : "<<head -> data <<" tail is : "<<tail -> next -> data<<endl;
+        cout<<"head is : "<<head -> data <<" tail is : "<<tail -> data<<endl;
 
+}
+
+// void Removeduplicates()
+
+// {
+//     if(head == NULL || head -> next == NULL)
+//     {
+//         cout<<"not possible "<<endl;
+//         return;
+//     }
+
+//     Node *outertemp = head;
+//     // while(prev -> next != head)
+//     // {
+//     //     prev = prev -> next;
+//     // }
+//     while(tail -> next != head)
+//     {
+//         tail = tail -> next;
+//     }
+//     while(outertemp  -> next != head)
+//     {
+        
+//         Node *temp = head;
+//         Node *Next = temp -> next;
+//         Node *prev = tail;
+
+//        while(temp -> next != head && Next != head)
+//        {
+//         if(temp -> data > temp -> next -> data)
+//         {
+//             if(temp == head)
+//             {
+//                 head = temp -> next;
+//             }
+//             if(Next -> next == head)
+//             {
+//                 tail = temp;
+//             }
+//             prev -> next = Next;
+//             temp -> next = Next -> next;
+//             Next -> next = temp;
+         
+//         }
+//         temp = temp -> next;
+//         Next = temp -> next;
+//         prev = prev -> next;
+//        }
+//        outertemp = outertemp->next;
+ 
+//    }
+// }
+void Removeduplicate()
+{
+    if(head == NULL || head ->next == head)
+    {
+        cout<<"Not possible !!!"<<endl;
+        return;
+    }
+    Node *prev = tail;
+    Node *temp = head;
+    while(temp -> next  != head)
+    {
+        while(temp -> data == temp -> next -> data)
+        {
+            Node *NEXT = temp -> next;
+            if(NEXT == tail)
+            {
+                tail = temp;
+            }
+            temp -> next = NEXT -> next;
+            delete NEXT;
+            temp = temp -> next;
+            prev = prev -> next;
+
+        }
+        temp = temp -> next;
+        prev = prev -> next;
+    }
 }
 void Insertsortedorder(int d)
 {
-    if(head == NULL)
-    {
-        cout<<"Empty "<<endl;
-        return;
-    }
     Node *n_node = new Node(d);
     Node *temp = head;
-    Node *t_temp = tail;
-    while(temp  -> next != head)
+    if(head == NULL)
     {
-       while(temp -> next != head)
-       {
-        if(temp -> next -> data < temp -> data)
-        {
-            t_temp -> next = temp -> next -> next;
-            temp -> next -> next = temp;
-            t_temp -> next = temp -> next;
-        }
-        t_temp = temp;
-        temp = temp -> next;
-       }
+        n_node ->next = n_node;
+        head = tail = n_node;
+        return;
     }
+    if(head -> next == head)
+    {
+        if(head -> data <= n_node -> data)
+        {
+            head -> next = n_node;
+            n_node -> next = head;
+        }
+        else
+        {
+            head -> next = n_node;
+            n_node -> next = head;
+            head = n_node;
+        }
+    }
+    if (d <= head->data)
+    {
+        tail -> next = n_node;
+        n_node -> next = head;
+        head = n_node;
+        return;
+    }
+    while (temp->next != head && temp->next->data < d)
+    {
+        temp = temp->next;
+    }
+
+    n_node->next = temp->next;
+    temp->next = n_node;
+
+    if (temp == tail)
+    {
+        tail = n_node;
+    }
+    
 }
 
 };
@@ -149,8 +248,17 @@ int main()
 {
     LinkedList l1;
     l1.Insertatend(1);
-    l1.Insertatend(4);
+    l1.Insertatend(1);
+    l1.Insertatend(1);
     l1.Insertatend(3);
+    l1.Insertatend(3);
+    l1.Insertatend(3);
+    l1.Insertatend(4);
+    l1.Insertatend(4);
+    l1.Insertatend(4);
+   // l1.Insertatend(-1);
+    //l1.Removeduplicate();
     l1.Insertsortedorder(2);
+
     l1.Display();
 }
