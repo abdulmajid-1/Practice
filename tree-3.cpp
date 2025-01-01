@@ -4,12 +4,16 @@ using namespace std;
 class Node 
 {
     public:
-        int data;
+        int pcode;
+        float price;
+        string name;
         Node *left;
         Node *right;
-        Node(int d)
+        Node(int p,string n, float pri)
         {
-            data = d;
+            pcode = p;
+            name = name ;
+            price = pri;
             left = NULL;
             right = NULL;
 
@@ -23,9 +27,9 @@ class Tree
         {
             root = NULL;
         }
-        void insertnode(int d)
+        void insertnode(int p, string n, float pri)
         {
-            Node *n_node = new Node(d);
+            Node *n_node = new Node(p,n,pri);
             if(root == NULL)
             {
                 root = n_node;
@@ -34,7 +38,7 @@ class Tree
             Node *temp = root;
             while(temp)
             {
-                if(n_node -> data < temp -> data)
+                if(n_node -> price < temp -> price)
                 {
                     if(temp -> right == NULL)
                     {
@@ -47,7 +51,7 @@ class Tree
                     }
                  
                 }
-                if(n_node ->data > temp -> data)
+                if(n_node ->price > temp -> price)
                 {
                     if(temp -> left == NULL)
                     {
@@ -60,7 +64,7 @@ class Tree
                         temp = temp -> left;
                     }
                 }
-                if(temp -> data == temp -> data)
+                if(temp -> price == temp -> price)
                 {
                     return;
                 }
@@ -72,7 +76,9 @@ class Tree
             if(root != NULL)
             {
                 inorderdisplay(root -> left);
-                cout<<root -> data <<" ";
+                cout<<root -> price <<" ";
+                cout<<root -> name<<" ";
+                cout<<root -> pcode<<" ";
                 inorderdisplay(root -> right);
                 cout<<endl;
             }
@@ -81,7 +87,9 @@ class Tree
         {
             if(root != NULL)
             {
-                cout<<root -> data<<" ";
+                cout<<root -> price<<" ";
+                cout<<root -> name<<" ";
+                cout<<root -> pcode<<" ";
                 preorder(root -> left);
                 preorder(root -> right);
                 cout<<endl;
@@ -93,7 +101,9 @@ class Tree
             {
                 postorder(root -> left);
                 postorder(root -> right);
-                cout<<root -> data<<" ";
+                cout<<root -> price<<" ";
+                cout<<root -> name<<" ";
+                cout<<root -> pcode<<" ";
                 cout<<endl;
             }
         }
@@ -101,12 +111,12 @@ class Tree
         {
            while(root != NULL)
            {
-                if(key == root ->data)
+                if(key == root ->price)
                 {
                     cout<<"Data found "<<endl;
                     return;
                 }
-                else if(key > root -> data)
+                else if(key > root -> price)
                 {
                     root = root -> right;
 
@@ -120,21 +130,21 @@ class Tree
         }
         void maxnode(Node *root)
         {
-            while(root -> left != NULL)
+            while(root -> right != NULL)
             {
-                root = root -> left;
+                root = root -> right;
             }
-            cout<<"Max node is : "<<root -> data<<endl;
+            cout<<"Max price is : "<<root -> price<<endl;
 
 
         }
         void minnode(Node *root)
         {
-            while(root -> right != NULL)
+            while(root -> left != NULL)
             {
-                root = root -> right;
+                root = root -> left;
             }
-            cout<<"Max node is : "<<root -> data<<endl;
+            cout<<"Max price is : "<<root -> price<<endl;
 
 
         }
@@ -145,17 +155,17 @@ class Tree
 int main()
 {
     Tree t1;
-    t1.insertnode(10);
-    t1.insertnode(5);
-    t1.insertnode(20);
-    // cout<<"Inorder display \n";
-    // t1.inorderdisplay(t1.root);
-    // cout<<"Preorder display \n";
-    // t1.preorder(t1.root);
-    // cout<<"Postorder display \n";
-    // t1.postorder(t1.root);
-    t1.maxnode(t1.root);
-    t1.minnode(t1.root);
+    t1.insertnode(111,"oil",1000);
+    t1.insertnode(222,"roti",2000);
+    t1.insertnode(333,"shampoo",3000);
+    cout<<"Inorder display \n";
+    t1.inorderdisplay(t1.root);
+    cout<<"Preorder display \n";
+    t1.preorder(t1.root);
+    cout<<"Postorder display \n";
+    t1.postorder(t1.root);
+    // t1.maxnode(t1.root);
+    // t1.minnode(t1.root);
     
 
 

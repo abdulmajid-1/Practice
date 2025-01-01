@@ -4,12 +4,17 @@ using namespace std;
 class Node 
 {
     public:
-        int data;
+        int ID;
+        string name;
+        float gpa;
         Node *left;
         Node *right;
-        Node(int d)
+    
+        Node(int id, string n, float g)
         {
-            data = d;
+            ID = id;
+            gpa = g;
+            name = n;
             left = NULL;
             right = NULL;
 
@@ -23,9 +28,9 @@ class Tree
         {
             root = NULL;
         }
-        void insertnode(int d)
+        void insertnode(int id, string n, float g)
         {
-            Node *n_node = new Node(d);
+            Node *n_node = new Node(id,n,g);
             if(root == NULL)
             {
                 root = n_node;
@@ -34,7 +39,7 @@ class Tree
             Node *temp = root;
             while(temp)
             {
-                if(n_node -> data < temp -> data)
+                if(n_node -> gpa < temp -> gpa)
                 {
                     if(temp -> right == NULL)
                     {
@@ -47,7 +52,7 @@ class Tree
                     }
                  
                 }
-                if(n_node ->data > temp -> data)
+                if(n_node ->gpa > temp -> gpa)
                 {
                     if(temp -> left == NULL)
                     {
@@ -60,7 +65,7 @@ class Tree
                         temp = temp -> left;
                     }
                 }
-                if(temp -> data == temp -> data)
+                if(temp -> gpa == temp -> gpa)
                 {
                     return;
                 }
@@ -72,7 +77,7 @@ class Tree
             if(root != NULL)
             {
                 inorderdisplay(root -> left);
-                cout<<root -> data <<" ";
+                cout<<root -> gpa <<" ";
                 inorderdisplay(root -> right);
                 cout<<endl;
             }
@@ -81,7 +86,7 @@ class Tree
         {
             if(root != NULL)
             {
-                cout<<root -> data<<" ";
+                cout<<root -> gpa<<" ";
                 preorder(root -> left);
                 preorder(root -> right);
                 cout<<endl;
@@ -93,7 +98,7 @@ class Tree
             {
                 postorder(root -> left);
                 postorder(root -> right);
-                cout<<root -> data<<" ";
+                cout<<root -> gpa<<" ";
                 cout<<endl;
             }
         }
@@ -101,12 +106,12 @@ class Tree
         {
            while(root != NULL)
            {
-                if(key == root ->data)
+                if(key == root ->gpa)
                 {
                     cout<<"Data found "<<endl;
                     return;
                 }
-                else if(key > root -> data)
+                else if(key > root -> gpa)
                 {
                     root = root -> right;
 
@@ -124,7 +129,7 @@ class Tree
             {
                 root = root -> left;
             }
-            cout<<"Max node is : "<<root -> data<<endl;
+            cout<<"Max gpa is : "<<root -> gpa<<endl;
 
 
         }
@@ -134,7 +139,7 @@ class Tree
             {
                 root = root -> right;
             }
-            cout<<"Max node is : "<<root -> data<<endl;
+            cout<<"Min gpa is : "<<root -> gpa<<endl;
 
 
         }
@@ -145,9 +150,9 @@ class Tree
 int main()
 {
     Tree t1;
-    t1.insertnode(10);
-    t1.insertnode(5);
-    t1.insertnode(20);
+    t1.insertnode(946,"Majid",3.3);
+    t1.insertnode(912,"Umer",3.2);
+    t1.insertnode(933,"Haider",3.0);
     // cout<<"Inorder display \n";
     // t1.inorderdisplay(t1.root);
     // cout<<"Preorder display \n";
