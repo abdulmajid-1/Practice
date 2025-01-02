@@ -115,60 +115,10 @@ class LinkedList
                 break;
             }
         }
-        cout<<"head is : "<<head -> data <<" tail is : "<<tail -> data<<endl;
 
 }
 
-// void Removeduplicates()
 
-// {
-//     if(head == NULL || head -> next == NULL)
-//     {
-//         cout<<"not possible "<<endl;
-//         return;
-//     }
-
-//     Node *outertemp = head;
-//     // while(prev -> next != head)
-//     // {
-//     //     prev = prev -> next;
-//     // }
-//     while(tail -> next != head)
-//     {
-//         tail = tail -> next;
-//     }
-//     while(outertemp  -> next != head)
-//     {
-        
-//         Node *temp = head;
-//         Node *Next = temp -> next;
-//         Node *prev = tail;
-
-//        while(temp -> next != head && Next != head)
-//        {
-//         if(temp -> data > temp -> next -> data)
-//         {
-//             if(temp == head)
-//             {
-//                 head = temp -> next;
-//             }
-//             if(Next -> next == head)
-//             {
-//                 tail = temp;
-//             }
-//             prev -> next = Next;
-//             temp -> next = Next -> next;
-//             Next -> next = temp;
-         
-//         }
-//         temp = temp -> next;
-//         Next = temp -> next;
-//         prev = prev -> next;
-//        }
-//        outertemp = outertemp->next;
- 
-//    }
-// }
 void Removeduplicate()
 {
     if(head == NULL || head ->next == head)
@@ -248,17 +198,21 @@ int main()
 {
     LinkedList l1;
     l1.Insertatend(1);
-    l1.Insertatend(1);
-    l1.Insertatend(1);
-    l1.Insertatend(3);
-    l1.Insertatend(3);
+    // l1.Insertatend(1);
+    // l1.Insertatend(1);
+    // l1.Insertatend(3);
+    // l1.Insertatend(3);
     l1.Insertatend(3);
     l1.Insertatend(4);
-    l1.Insertatend(4);
-    l1.Insertatend(4);
+    // l1.Insertatend(4);
+    // l1.Insertatend(4);
+    //l1.treversal();
    // l1.Insertatend(-1);
-    //l1.Removeduplicate();
-    l1.Insertsortedorder(2);
+   cout<<"Before reversing  : "<<endl;
+   l1.Display();
+    cout<<"After reversing  : "<<endl;
+    l1.ReverseList();
 
     l1.Display();
+
 }

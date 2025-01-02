@@ -89,6 +89,6 @@ int main()
     cout<<q1.Dequeue()<<endl;
     q1.Print();
     cout<<q1.Dequeue()<<endl;
-    q1.Print();
+
 
 }

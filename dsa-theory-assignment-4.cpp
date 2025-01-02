@@ -175,6 +175,7 @@ int main()
     Stack s1;
     string s = "23*54*+9-";
     int result = Postfix(s);
+    cout<<"Expression is : "<<s<<endl;
     if (result != 0) 
     {
         cout << "Result: " << result << endl;
@@ -182,8 +183,27 @@ int main()
     // string st1 = "{({)}";
     // string st2 = "()(){}";
     // bool checker;
-    // cout << "First parentheses is: " << (Checkforpara(st1) ? "Balanced" : "Not Balanced") << endl;
-    // cout << "Second parentheses is: " << (Checkforpara(st2) ? "Balanced" : "Not Balanced") << endl;
+    // cout<<"First string : "<<st1<<endl;
+    // cout<<"Second string : "<<st2<<endl;
+    // checker = Checkforpara(st1);
+    // if(checker)
+    // {
+    //     cout<<"first Balanced "<<endl;
+    // }
+    // else
+    // {
+    //     cout<<"first Not Balanced "<<endl;
+    // }
+    // checker = Checkforpara(st2);
+    // if(checker)
+    // {
+    //     cout<<"Second Balanced : "<<endl;
+    // }
+    // else
+    // {
+    //     cout<<"second not balanced "<<endl;
+    // }
+
 
 
 

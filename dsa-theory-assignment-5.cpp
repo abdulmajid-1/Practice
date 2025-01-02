@@ -88,7 +88,6 @@ int main()
     q1.enqueue(3);
     q1.enqueue(4);
     q1.enqueue(5);
-    q1.enqueue(6);
     q1.print();
     q1.enqueue(88);
     q1.dequeue();

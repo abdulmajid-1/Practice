@@ -174,7 +174,6 @@ class LinkedList
                 break;
             }
         }
-        // cout<<"head is : "<<head -> data <<" tail is : "<<tail -> next -> data<<endl;
 
 }
 void findmiddlenode()
@@ -255,14 +254,12 @@ void checkpalindrome()
 }
 void ReverseList()
 {
-    // Pointers to help reverse the list
-    Node *prev = NULL;       // Initialize previous pointer as NULL
-    Node *current = head;    // Start from the head node
-    Node *next = NULL;       // Initialize next pointer to NULL
+    Node *prev = NULL;      
+    Node *current = head;   
+    Node *next = NULL;       
     Node *oghead = head;
     Node *ogtail = tail;
 
-    // Check if the list is empty or has only one node
     if (head == NULL || head->next == NULL)
     {
         cout << "List is already reversed or empty!" << endl;
@@ -274,7 +271,6 @@ void ReverseList()
 
     
 
-      // Traverse the list and reverse the links
         while (current != NULL)
         {
             next = current->next;   // Store the next node
@@ -300,7 +296,8 @@ void priroty(int m, int n)
     Node *newhead = NULL;
     Node *newtail = NULL;
     Node *lasttail = NULL;
-    int temp_m = m;
+    // just to store the original m and n
+    int temp_m = m; 
     int temp_n = n;
     bool checker = true;
     while(temp != NULL)
@@ -313,7 +310,7 @@ void priroty(int m, int n)
             m--;
         }
         if(temp -> next == NULL)
-        return;
+            return;
         newtail = temp;
         newhead = temp -> next;
         while(n > 0 && temp -> next != NULL)
@@ -403,22 +400,35 @@ int main()
     l1.Insertatend(2);
     l1.Insertatend(3);
     l1.Insertatend(4);
- //   l1.findmiddlenode();
- //   l1.checkpalindrome();
-    l2.Insertatend(5);
-    l2.Insertatend(6);
-    l1.Insertatend(5);
-    l1.Insertatend(6);
-    l1.Insertatend(7);
-    l1.Insertatend(8);
-    l1.Insertatend(9);
-    l1.Insertatend(10);
-  //  Merge(l1,l2);
-   // l1.ReverseList();
-    //l1.priroty(3,4);
-    l1.removal(2,3);
+    // l1.Insertatend(5);
+    // l1.Insertatend(6);
+    //l1.findmiddlenode();
+    // l1.checkpalindrome();
+    // l2.Insertatend(5);
+    // l2.Insertatend(6);
+    // l1.Insertatend(5);
+    // l1.Insertatend(6);
+    // l1.Insertatend(7);
+    // l1.Insertatend(8);
+    // l1.Insertatend(9);
+    // l1.Insertatend(10);
+    //Merge(l1,l2);
+    // cout<<"Before reverse : "<<endl;
+    // l1.Display();
+    // cout<<"After reverse : "<<endl;
+    // l1.ReverseList();
+    // cout<<"Before removing : "<<endl;    
+    l1.priroty(2,2);
+    l1.Display();
+    // l1.removal(2,2);
 
    //s cout<<"Index : "<<l1.searchbyvalue(22)<<endl;
-  l1.Display();
+//    cout<<"l1 data : "<<endl;
+    // cout<<"After removal  : "<<endl;
+    // l1.Display();
+//   cout<<"l2 data : "<<endl;
+//   l2.Display();
+//   cout<<"After merge : "<<endl;
+//   Merge(l1,l2);
     return 0;
 }

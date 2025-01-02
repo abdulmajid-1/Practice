@@ -118,9 +118,9 @@ void Reversearray(int arr[],int size)
 int main()
 {
     Stack s1;
-    int arr[] = {20,30,40,50};
-    int size = sizeof(arr)/sizeof(int);
-   // Reversearray(arr,size);
+//     int arr[] = {20,30,40,50};
+//     int size = sizeof(arr)/sizeof(int);
+//    Reversearray(arr,size);
     s1.Push(7);
     s1.Push(6);
     s1.Push(5);
@@ -128,6 +128,9 @@ int main()
     s1.Push(3);
     s1.Push(2);
     s1.Push(1);
+    cout<<"Before deleting the middle : "<<endl;
+    s1.Display();
+    cout<<"After deleting the middle : "<<endl;
     s1.Deletemiddle();
     s1.Display();
 

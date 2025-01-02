@@ -2,16 +2,29 @@
 using namespace std;
 int main()
 {
-    int s = 0;
-   for(int i = 0; i < 10; i++)
-   {
-        for(int j = 0; j < 5; j++)
+    int n,space,spacen,in;
+    cout<<"Enter : ";
+    cin>>n;
+    spacen = n;
+    in = n;
+    for(int i = 1; i <= in; i++)
+    {
+        space = spacen - i;
+        for(int j = 1; j <= n; j++)
         {
-        if(s == 0)
-        {
-            cout<<"*";
-        }
-        }
+            if(space > 0)
+            {
+                cout<<" ";
+                space--;
+            }
+            else
+            {
+                cout<<"*";
+            }
 
-   }
+
+        }
+        n++;
+        cout<<endl;
+    }
 }
