@@ -302,6 +302,8 @@ void priroty(int m, int n)
     bool checker = true;
     while(temp != NULL)
     {
+        //hello 
+        
         m = temp_m;
         n = temp_n;
         while(m > 1 && temp -> next != NULL)
