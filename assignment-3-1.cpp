@@ -140,43 +140,7 @@ class Tree
     }
 
             
-    // void Leftviewoftree(Node *root) 
-    // {
-    //     if (root == NULL) 
-    //     {
-    //         return;
-    //     }
-    //     cout<<"Left view of the tree is : "<<endl;
-
-    //     queue<Node*> q;
-    //     q.push(root);
-
-    //     while (!q.empty()) 
-    //     {
-    //         int size = q.size();
-    //         for (int i = 0; i < size; i++) 
-    //         {
-    //             Node *current = q.front();
-    //             q.pop();
-
-    //             // Print the first node of each level
-    //             if (i == 0) 
-    //             {
-    //                 cout << current->data << " ";
-    //             }
-
-    //             // Add the left and right children to the queue
-    //             if (current->left) 
-    //             {
-    //                 q.push(current->left);
-    //             }
-    //             if (current->right) 
-    //             {
-    //                 q.push(current->right);
-    //             }
-    //         }
-    //     }
-    // }
+   
 };
 int main()
 {
